@@ -1,0 +1,5 @@
+﻿  tbitfield.cpp
+f:\nngutasks\mp2-lab1-set\src\tbitfield.cpp(148): warning C4554: <<: проверьте порядок применения операторов на наличие ошибки; для четкого задания порядка используйте скобки
+f:\nngutasks\mp2-lab1-set\src\tbitfield.cpp(148): warning C4554: >>: проверьте порядок применения операторов на наличие ошибки; для четкого задания порядка используйте скобки
+f:\nngutasks\mp2-lab1-set\src\tbitfield.cpp(158): warning C4700: использована неинициализированная локальная переменная "field"
+  bitfield.vcxproj -> F:\NnguTasks\mp2-lab1-set\sln\vc10\Debug\bitfield.lib
