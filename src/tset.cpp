@@ -30,16 +30,32 @@ int TSet::GetMaxPower(void) const // получить макс. к-во эл-т�
 
 int TSet::IsMember(const int Elem) const // элемент множества?
 {
+	return 0;
+	if (Elem < 0)
+		throw runtime_error("IsMember: negative index is forbidden");
+	if (Elem >= MaxPower)
+		throw runtime_error("IsMember: too large index is forbidden");
+
 	return BitField.GetBit(Elem);
 }
 
 void TSet::InsElem(const int Elem) // включение элемента множества
 {
+	if (Elem < 0)
+		throw runtime_error("InsElem: negative index is forbidden");
+	if (Elem >= MaxPower)
+		throw runtime_error("InsElem: too large index is forbidden");
+
 	BitField.SetBit(Elem);
 }
 
 void TSet::DelElem(const int Elem) // исключение элемента множества
 {
+	if (Elem < 0)
+		throw runtime_error("DelElem: negative index is forbidden");
+	if (Elem >= MaxPower)
+		throw runtime_error("DelElem: too large index is forbidden");
+
 	BitField.ClrBit(Elem);
 }
 
