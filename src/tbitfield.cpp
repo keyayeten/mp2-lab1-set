@@ -150,20 +150,26 @@ TBitField TBitField::operator~(void) // отрицание
 istream& operator>>(istream& istr, TBitField& bf) // ввод
 {
 	//При условии корректного ввода
-	char* field;
+	string field;
 	istr >> field;
-	int i = 0;
-	while (field[i] != '\0') {
-		i++;
+	unsigned int length = field.length();
+	field.resize(8 * sizeof(TELEM) * bf.MemLen);
+	for (int i = length; i < 8 * sizeof(TELEM) * bf.MemLen; i++)
+		field[i] = '0';
+
+	unsigned int t;
+
+
+
+	for (int i = 0; i < bf.MemLen; i++) {
+		for (int j = 0; j < 8 * sizeof(TELEM); j++) {
+			t = field[i * 8 * sizeof(TELEM) + j] - '0';
+			bf.pMem[i] = bf.pMem[i] | (t << j);
+		}
 	}
-	i--;
-	TBitField bit(i);
-	while (i >= 0) {
-		if (field[i] == '1')
-			bit.SetBit(i);
-		i--;
-	}
-	bf = bit;
+
+
+
 
 	return istr;
 }

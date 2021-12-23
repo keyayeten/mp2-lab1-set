@@ -1,8 +1,3 @@
 ﻿cl : командная строка warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
   tset.cpp
-  tbitfield.cpp
-C:\Users\sexon\Documents\GitHub\mp2-lab1-set\src\tbitfield.cpp(144,70): warning C4554: "<<": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
-C:\Users\sexon\Documents\GitHub\mp2-lab1-set\src\tbitfield.cpp(144,103): warning C4554: ">>": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
-  Создание кода...
-C:\Users\sexon\Documents\GitHub\mp2-lab1-set\src\tbitfield.cpp(154): warning C4700: использована неинициализированная локальная переменная "field"
   bitfield.vcxproj -> C:\Users\sexon\Documents\GitHub\mp2-lab1-set\sln\vc10\Debug\bitfield.lib

@@ -87,16 +87,18 @@ TSet TSet::operator+(const TSet& s) // объединение
 
 TSet TSet::operator+(const int Elem) // объединение с элементом
 {
-	TSet tField(*this);
-	tField.BitField.SetBit(Elem);
-	return tField;
+	if (Elem < 0 || Elem >= MaxPower) throw invalid_argument("incorrect element");
+	TBitField temp(*this);
+	temp.SetBit(Elem);
+	return temp;
 }
 
 TSet TSet::operator-(const int Elem) // разность с элементом
 {
-	TSet tField(*this);
-	tField.BitField.ClrBit(Elem);
-	return tField;
+	if (Elem < 0 || Elem >= MaxPower) throw invalid_argument("incorrect element");
+	TBitField temp(*this);
+	temp.ClrBit(Elem);
+	return temp;
 }
 
 TSet TSet::operator*(const TSet& s) // пересечение
@@ -117,13 +119,43 @@ TSet TSet::operator~(void) // дополнение
 
 istream& operator>>(istream& istr, TSet& s) // ввод
 {
-	istr >> s.BitField;
-	s.MaxPower = s.BitField.GetLength();
+	int t;
+	char sett;
+
+	do
+	{
+		istr >> sett;
+	} while (sett != '{');
+
+	do {
+		istr >> t;
+		s.InsElem(t);
+
+		do
+		{
+			istr >> sett;
+		} while ((sett != '}') && (sett != ','));
+
+
+	} while (sett != '}');
+
 	return istr;
 }
 
 ostream& operator<<(ostream& ostr, const TSet& s) // вывод
 {
-	ostr << s.BitField;
+	char sett = '{';
+
+	for (int i = 0; i < s.MaxPower; i++)
+	{
+		if (s.IsMember(i))
+		{
+			ostr << sett << i;
+			sett = ',';
+		}
+	}
+
+	ostr << "}";
+
 	return ostr;
 }
