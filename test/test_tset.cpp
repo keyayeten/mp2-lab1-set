@@ -295,3 +295,10 @@ TEST(TSet, check_negation_operator)
 
   EXPECT_EQ(expSet, set1);
 }
+
+TEST(TSet, correct_set_maxpower_when_copying)
+{
+    TSet bs0(5);
+    TSet bs(bs0);
+    EXPECT_EQ(bs0.GetMaxPower(), bs.GetMaxPower());
+}

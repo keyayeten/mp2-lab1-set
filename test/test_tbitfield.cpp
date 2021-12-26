@@ -309,3 +309,15 @@ TEST(TBitField, bitfields_with_different_bits_are_not_equal)
 
   EXPECT_NE(bf1, bf2);
 }
+
+TEST(TBitField, throws_when_create_bitfield_by_copying_bitfield_with_negative_length)
+{
+    ASSERT_ANY_THROW(TBitField(TBitField(-5)));
+}
+
+TEST(TBitField, correct_bitfield_size_when_copying)
+{
+    TBitField bf0(5);
+    TBitField bf(bf0);
+    EXPECT_EQ(bf0.GetLength(), bf.GetLength());
+}
