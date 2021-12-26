@@ -149,36 +149,30 @@ TBitField TBitField::operator~(void) // отрицание
 
 istream& operator>>(istream& istr, TBitField& bf) // ввод
 {
-	//При условии корректного ввода
-	string field;
-	istr >> field;
-	unsigned int length = field.length();
-	field.resize(8 * sizeof(TELEM) * bf.MemLen);
-	for (int i = length; i < 8 * sizeof(TELEM) * bf.MemLen; i++)
-		field[i] = '0';
+	int i = 0;
+	char ch;
 
-	unsigned int t;
-
-
-
-	for (int i = 0; i < bf.MemLen; i++) {
-		for (int j = 0; j < 8 * sizeof(TELEM); j++) {
-			t = field[i * 8 * sizeof(TELEM) + j] - '0';
-			bf.pMem[i] = bf.pMem[i] | (t << j);
+	do
+	{
+		istr >> ch;
+		if (ch == '1')
+		{
+			bf.SetBit(i++);
 		}
-	}
-
-
-
-
+		else if (ch == '0')
+		{
+			bf.ClrBit(i++);
+		}
+		else break;
+	} while ((ch == '1') || (ch == '0'));
 	return istr;
 }
 
 ostream& operator<<(ostream& ostr, const TBitField& bf) // вывод
 {
-	for (int i = 0; i < bf.MemLen; i++)
+	for (int i = 0; i < bf.BitLen; i++)
 	{
-		ostr << std::bitset<8 * sizeof(TELEM)>(bf.pMem[i]);
+		ostr << bf.GetBit(i);
 	}
 	return ostr;
 }

@@ -117,45 +117,37 @@ TSet TSet::operator~(void) // дополнение
 
 // перегрузка ввода/вывода
 
+
+
 istream& operator>>(istream& istr, TSet& s) // ввод
 {
-	int t;
-	char sett;
+	int elem;
+	char check;
+	do
+	{
+		istr >> check;
+	} while (check != '{');
 
 	do
 	{
-		istr >> sett;
-	} while (sett != '{');
-
-	do {
-		istr >> t;
-		s.InsElem(t);
-
+		istr >> elem;
+		s.InsElem(elem);
 		do
-		{
-			istr >> sett;
-		} while ((sett != '}') && (sett != ','));
-
-
-	} while (sett != '}');
-
+			istr >> check;
+		while ((check != ',') && (check != '}'));
+	} while (check != '}');
 	return istr;
 }
 
 ostream& operator<<(ostream& ostr, const TSet& s) // вывод
 {
-	char sett = '{';
-
-	for (int i = 0; i < s.MaxPower; i++)
-	{
+	int el = s.GetMaxPower() - 1;
+	while (!s.IsMember(el))
+		el--;
+	for (int i = 0; i < el; i++)
 		if (s.IsMember(i))
-		{
-			ostr << sett << i;
-			sett = ',';
-		}
-	}
+			ostr << i << " ";
 
-	ostr << "}";
-
+	ostr << el << endl;
 	return ostr;
 }
