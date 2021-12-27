@@ -31,7 +31,7 @@ TBitField::~TBitField()
 int TBitField::GetMemIndex(const int n) const // индекс Мем для бита n
 {
 	if (n >= BitLen || n < 0)
-		throw 0;
+		throw "Error: (GetMemIndex) inacceptable index";
 	else
 		return n / (sizeof(TELEM) * 8);
 }
@@ -53,7 +53,7 @@ int TBitField::GetLength(void) const // получить длину (к-во б�
 void TBitField::SetBit(const int n) // установить бит
 {
 	if (n < 0 || n >= BitLen)
-		throw 0;
+		throw "Out of bounds(SetBit)";
 	int k = GetMemIndex(n);
 	TELEM mask = GetMemMask(n);
 	pMem[k] = pMem[k] | mask;
@@ -62,7 +62,7 @@ void TBitField::SetBit(const int n) // установить бит
 void TBitField::ClrBit(const int n) // очистить бит
 {
 	if (n < 0 || n >= BitLen)
-		throw 0;
+		throw "Error: (ClrBit) inacceptable index";
 	int k = GetMemIndex(n);
 	TELEM mask = GetMemMask(n);
 	pMem[k] = pMem[k] & ~(mask);

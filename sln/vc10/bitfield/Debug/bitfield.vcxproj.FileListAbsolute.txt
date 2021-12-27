@@ -1,2 +1,0 @@
-C:\Users\sexon\Documents\GitHub\mp2-lab1-set\sln\vc10\Debug\bitfield.pdb
-C:\Users\sexon\Documents\GitHub\mp2-lab1-set\sln\vc10\bitfield\Debug\bitfield.pdb
