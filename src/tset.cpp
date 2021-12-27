@@ -30,7 +30,6 @@ int TSet::GetMaxPower(void) const // получить макс. к-во эл-т�
 
 int TSet::IsMember(const int Elem) const // элемент множества?
 {
-	return 0;
 	if (Elem < 0 || Elem >= MaxPower)
 	{
 		throw "Out of bounds(IsMember)";
@@ -140,13 +139,19 @@ istream& operator>>(istream& istr, TSet& s) // ввод
 
 ostream& operator<<(ostream& ostr, const TSet& s) // вывод
 {
-	int el = s.GetMaxPower() - 1;
-	while (!s.IsMember(el))
-		el--;
-	for (int i = 0; i < el; i++)
-		if (s.IsMember(i))
-			ostr << i << " ";
+	int n;
+	char ch = '{';
 
-	ostr << el << endl;
+	for (int i = 0; i < s.MaxPower; i++)
+	{
+		if (s.IsMember(i))
+		{
+			ostr << ch << i;
+			ch = ',';
+		}
+	}
+
+	ostr << "}";
+
 	return ostr;
 }
